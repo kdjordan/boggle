@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>Boggle Game :)</title>
+</head>
+<body>
+    <h1>BOGGLE !</h1>
+    <button id="start-btn" class="mb-1">BEGIN</button>
+    <div class="counter">
+        <div class="counter-title mb-1">TIME REMAINING ::  <span class="counter-display" id="counter">5</span></di>
+    </div>
+    {% block content %}{% endblock %}
+    <form action="" method="POST" id="the-form">
+        <label for="word">Enter a Word
+            <input type="text" name="word" id="word-input">
+            <button type="submit" id="go-btn">GO</button>
+        </label>
+    </form>
+
+    <script src="../static/app.js"></script>
+</body>
+</html>
