@@ -10,18 +10,24 @@
 </head>
 <body>
     <h1>BOGGLE !</h1>
-    <button id="start-btn" class="mb-1">BEGIN</button>
+    <div class="mb-1">
+        <button id="start-btn">BEGIN</button>
+        <button id="start-btn"><a href="/">RESET</a></button>
+    </div>
+
     <div class="counter">
-        <div class="counter-title mb-1">TIME REMAINING ::  <span class="counter-display" id="counter">5</span></di>
+        <div class="counter-title mb-1">TIME REMAINING ::  <span class="counter-display" id="counter">5</span></div>
     </div>
     {% block content %}{% endblock %}
-    <form action="" method="POST" id="the-form">
+    <form id="the-form" autocomplete="off">
         <label for="word">Enter a Word
             <input type="text" name="word" id="word-input">
             <button type="submit" id="go-btn">GO</button>
         </label>
     </form>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../static/app.js"></script>
+
 </body>
 </html>

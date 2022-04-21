@@ -12,12 +12,20 @@ import url('https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Lato&di
     --orange-web: #fca311ff;
     --platinum: #e5e5e5ff;
     --white: #ffffffff;
+    --red: #F5605C;
 }
 
 h1 {
     color: var(--white);
     margin-bottom: .5rem;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
 
 body {
     font-family: 'Lato', sans-serif;
@@ -63,6 +71,32 @@ td {
     text-align: center;
 }
 
+.game-play-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+#good-words h4 {
+    color: var(--aero);
+    text-decoration: underline;
+}
+#bad-words h4 {
+    color: var(--red);
+    text-decoration: underline;
+}
+
+#bad-list {
+    color: var(--red);
+    list-style-type: none;
+    text-decoration: none;
+}
+
+#good-list {
+    color: var(--aero);
+    list-style-type: none;
+    text-decoration: none;
+}
 
 
 /***** utility classes *****/
