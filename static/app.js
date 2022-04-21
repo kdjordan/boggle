@@ -11,13 +11,21 @@ let goodCountNum = 0
 let badCountNum = 0
 
 let countdownInterval
-console.log(goodCount.innerText)
+
+//disable submit word function until timer has started
+goBtn.disabled = true
+
 //event handlers
 startBtn.addEventListener('click', ()=> {
+console.log('click')
+    goBtn.removeAttribute('disabled')
     let count = 5
+    startBtn.disabled = true
     countdownInterval = setInterval(() =>{
         if (count == 0) {
             clearInterval(countdownInterval)
+            startBtn.removeAttribute('disabled')
+            goBtn.disabled = true
             setTimeout(() => {
                 counter.innerHTML = 5
                 count = 5
