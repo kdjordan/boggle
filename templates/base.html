@@ -9,10 +9,35 @@
     <title>Boggle Game :)</title>
 </head>
 <body>
-    <h1>BOGGLE !</h1>
-        <div class="mb-1">
-            <button id="start-btn">BEGIN</button>
-            <button id="reset-btn"><a href="/">NEW BOARD</a></button>
+    <div class="popup">
+        <div class="popup_wrapper">
+            <div class="popup_top">
+                <div class="popup_title">GAME RESULTS</div>
+                <div style="margin-bottom: .5rem;">Number of games : <span id="score">0</span></div>
+                <div class="popup_score">SCORE : <span id="score">0</span></div>
+            </div>
+            <div class="popup_results">
+                <div>
+                    <h4>GOOD WORDS : <span id="good-word-count">0</span></h4>
+                    <ul id="good-list"></u>
+                </div>
+                <div>
+                    <h4>BAD WORDS : <span id="bad-word-count">0</span></h4>
+                    <ul id="bad-list"></ul>
+                </div>
+                <div>
+                     <h4>NON WORDS : <span id="non-word-count">0</span></h4>
+                    <ul id="non-list"></ul>
+                </div>
+            </div>
+            <button id="close-btn" class="mb-1">CLOSE</button>
+            </div>
+        </div>
+    </div>
+    <h1 style="margin-top: -1.5rem;">BOGGLE !</h1>
+    <div class="mb-1">
+        <button id="start-btn">BEGIN</button>
+        <button id="reset-btn"><a href="/">NEW BOARD</a></button>
     </div>
     <div class="counter">
         <div class="counter-title mb-1">TIME REMAINING ::  <span class="counter-display" id="counter"></span></div>
@@ -26,8 +51,5 @@
     </form>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../static/app.js"></script>
-    <div id="popup">
-
-    </div>
 </body>
 </html>

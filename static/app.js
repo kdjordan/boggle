@@ -3,6 +3,7 @@ let startBtn = document.getElementById('start-btn')
 let counter = document.getElementById('counter')
 let goBtn = document.getElementById('go-btn')
 let resetBtn = document.getElementById('reset-btn')
+let closeBtn = document.getElementById('close-btn')
 let wordInput = document.getElementById('word-input')
 let theForm = document.getElementById('the-form')
 let goodList = document.getElementById('good-list')
@@ -12,6 +13,8 @@ let goodCount = document.getElementById('good-word-count')
 let badCount = document.getElementById('bad-word-count')
 let nonCount = document.getElementById('non-word-count')
 let scoreDisplay = document.getElementById('score')
+let popUp = document.querySelector('.popup')
+
 let goodCountNum = 0
 let badCountNum = 0
 let nonCountNum = 0
@@ -37,7 +40,7 @@ startBtn.addEventListener('click', ()=> {
             startBtn.removeAttribute('disabled')
             resetBtn.removeAttribute('disabled')
             goBtn.disabled = true
-            updateGameCount()
+            finalizeGame()
             setTimeout(() => {
                 counter.innerHTML = 5
                 count = 5
@@ -74,6 +77,12 @@ goBtn.addEventListener('click', async (e)=> {
     }
 })
 
+closeBtn.addEventListener('click',  ()=> {
+    popUp.style.top = `-200%`
+    window.location.replace("http://127.0.0.1:5000/");
+})
+
+
 //UI function to add to word lists based on response from /submit
 //good words are words that are in the grid
 //bad words are not words and words that are not in the grid
@@ -87,9 +96,10 @@ function addToList(list, word) {
     }
 }
 
-async function updateGameCount() {
+async function finalizeGame() {
     try {
-        let res = await axios.get('http://127.0.0.1:5000/finalize')
+        await axios.get('http://127.0.0.1:5000/finalize')
+        popUp.style.top = `10%`
     } catch(e) {
     console.log('error updating game count', e)
     }
