@@ -25,6 +25,10 @@ a {
     color: inherit;
 }
 
+li {
+    list-style-type: none
+}
+
 #start-btn, #reset-btn, #go-btn, #close-btn {
     background-color: var(--orange-web);
     outline:none;
@@ -153,18 +157,9 @@ td {
     color: red;
 }
 
+
+
 .popup button {
     position: fixed;
     bottom: 0;
 }
-
-
-/*
---black: #000000ff;
-    --oxford-blue: #14213dff;
-    --aero: #8eb8e5ff;
-    --orange-web: #fca311ff;
-    --platinum: #e5e5e5ff;
-    --white: #ffffffff;
-    --red: #F5605C;
-*/
