@@ -21,7 +21,7 @@ let nonCountNum = 0
 let score = 0
 let countdownInterval
 
-counter.innerHTML = 20
+counter.innerHTML = 60
 //disable submit word function until timer has started
 goBtn.disabled = true
 
@@ -32,7 +32,7 @@ goBtn.disabled = true
 startBtn.addEventListener('click', ()=> {
     goBtn.removeAttribute('disabled')
     resetBtn.disabled = true
-    let count = 20
+    count = 60
     startBtn.disabled = true
     countdownInterval = setInterval(() =>{
         if (count == 0) {
@@ -42,8 +42,8 @@ startBtn.addEventListener('click', ()=> {
             goBtn.disabled = true
             finalizeGame()
             setTimeout(() => {
-                counter.innerHTML = 20
-                count = 20
+                counter.innerHTML = count
+                count -= 1
             }, 1000)
         } else {
             counter.innerHTML = count -= 1
@@ -92,7 +92,6 @@ function addToList(list, word) {
     list.appendChild(li)
 
     if (list === goodList) {
-    console.log('adding to good', word, word.length)
         scoreDisplay.innerText = score += word.length
     }
 }
