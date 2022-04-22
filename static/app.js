@@ -1,6 +1,8 @@
+//grab our elements that we will be using
 let startBtn = document.getElementById('start-btn')
 let counter = document.getElementById('counter')
 let goBtn = document.getElementById('go-btn')
+let resetBtn = document.getElementById('reset-btn')
 let wordInput = document.getElementById('word-input')
 let theForm = document.getElementById('the-form')
 let goodList = document.getElementById('good-list')
@@ -16,15 +18,19 @@ let countdownInterval
 goBtn.disabled = true
 
 //event handlers
+
+//start button begins the countdown clock and enables the submit functionality for the form
+//once the timer is up it disables the ability to input words from the form
 startBtn.addEventListener('click', ()=> {
-console.log('click')
     goBtn.removeAttribute('disabled')
+    resetBtn.disabled = true
     let count = 5
     startBtn.disabled = true
     countdownInterval = setInterval(() =>{
         if (count == 0) {
             clearInterval(countdownInterval)
             startBtn.removeAttribute('disabled')
+            resetBtn.removeAttribute('disabled')
             goBtn.disabled = true
             setTimeout(() => {
                 counter.innerHTML = 5
@@ -36,6 +42,9 @@ console.log('click')
     }, 1000)
 })
 
+
+//submit button takes words from the form and utilized ajax to send to our /submit route
+//with the result the handler calls 'addToList' to display the word as either 'good' or 'bad'
 goBtn.addEventListener('click', async (e)=> {
     e.preventDefault()
     try {
@@ -44,21 +53,20 @@ goBtn.addEventListener('click', async (e)=> {
         let res = await axios.post('http://127.0.0.1:5000/submit', {'word': word})
 
         if (Object.keys(res.data)[0] == 'ok') {
-            console.log('append to good', Object.values(res.data)[0])
             addToList(goodList, Object.values(res.data)[0])
             goodCount.innerText = goodCountNum += 1
         } else {
-            console.log('append to bad', Object.values(res.data)[0])
             addToList(badList, Object.values(res.data)[0])
             badCount.innerText = badCountNum += 1
-            console.log('bad count', badCountNum)
         }
     } catch(e) {
         console.log('error in axios', e)
     }
 })
 
-//UI function to add to word lists
+//UI function to add to word lists based on response from /submit
+//good words are words that are in the grid
+//bad words are not words and words that are not in the grid
 function addToList(list, word) {
     var li = document.createElement("li")
     li.innerText = word
