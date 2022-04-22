@@ -35,13 +35,16 @@ def index():
     session['GOOD_WORDS'] = []
     session['NOT_ON_BOARD'] = []
     session['NOT_WORD'] = []
+    if session.get('NUM_GAMES') is None:
+        session['NUM_GAMES'] = 0
     return redirect('/board')
 
 
 @app.route('/board')
 def board():
     """sets up game and renders template to begin game"""
-    return render_template('board.html')
+    num = session['NUM_GAMES']
+    return render_template('board.html', num_games=num)
 
 
 @app.route('/submit', methods=["POST"])
@@ -51,6 +54,12 @@ def submit():
     # check word in board and update session
     res = check_word(word)
     return jsonify({res: word})
+
+
+@app.route('/finalize')
+def finalize():
+    session['NUM_GAMES'] = session['NUM_GAMES'] + 1
+    return redirect('/board')
 
 
 

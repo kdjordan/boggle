@@ -7,13 +7,18 @@ let wordInput = document.getElementById('word-input')
 let theForm = document.getElementById('the-form')
 let goodList = document.getElementById('good-list')
 let badList = document.getElementById('bad-list')
+let nonList = document.getElementById('non-list')
 let goodCount = document.getElementById('good-word-count')
 let badCount = document.getElementById('bad-word-count')
+let nonCount = document.getElementById('non-word-count')
+let scoreDisplay = document.getElementById('score')
 let goodCountNum = 0
 let badCountNum = 0
-
+let nonCountNum = 0
+let score = 0
 let countdownInterval
 
+counter.innerHTML = 5
 //disable submit word function until timer has started
 goBtn.disabled = true
 
@@ -32,6 +37,7 @@ startBtn.addEventListener('click', ()=> {
             startBtn.removeAttribute('disabled')
             resetBtn.removeAttribute('disabled')
             goBtn.disabled = true
+            updateGameCount()
             setTimeout(() => {
                 counter.innerHTML = 5
                 count = 5
@@ -55,9 +61,13 @@ goBtn.addEventListener('click', async (e)=> {
         if (Object.keys(res.data)[0] == 'ok') {
             addToList(goodList, Object.values(res.data)[0])
             goodCount.innerText = goodCountNum += 1
-        } else {
+        } else if (Object.keys(res.data)[0] == 'not-on-board'){
             addToList(badList, Object.values(res.data)[0])
             badCount.innerText = badCountNum += 1
+        }
+        else {
+            addToList(nonList, Object.values(res.data)[0])
+            nonCount.innerText = nonCountNum += 1
         }
     } catch(e) {
         console.log('error in axios', e)
@@ -71,4 +81,17 @@ function addToList(list, word) {
     var li = document.createElement("li")
     li.innerText = word
     list.appendChild(li)
+
+    if (list === goodList) {
+        scoreDisplay.innerHTML = score += word.length
+    }
+}
+
+async function updateGameCount() {
+    try {
+        let res = await axios.get('http://127.0.0.1:5000/finalize')
+    } catch(e) {
+    console.log('error updating game count', e)
+    }
+
 }

@@ -3,8 +3,14 @@
 {% block content %}
 <div class="game-play-wrapper">
     <div id="good-words">
-        <h4>GOOD WORDS : <span id="good-word-count">0</span></h4>
-        <ul id="good-list"></ul>
+        <div id="good-words-top">
+            <h4>SCORE : <span id="score">0</span></h>
+        </div>
+        <div id="good-words-bottom">
+            <h4>GOOD WORDS : <span id="good-word-count">0</span></h4>
+            <ul id="good-list"></u>
+        </div>
+
     </div>
     <div class="board-wrapper mb-2">
         <table class="board">
@@ -18,8 +24,14 @@
         </table>
     </div>
     <div id="bad-words">
-        <h4>BAD WORDS : <span id="bad-word-count">0</span></h4>
-        <ul id="bad-list"></ul>
+        <div id="bad-words-top">
+            <h4>BAD WORDS : <span id="bad-word-count">0</span></h4>
+            <ul id="bad-list"></ul>
+        </div>
+        <div id="bad-words-bottom">
+             <h4>NON WORDS : <span id="non-word-count">0</span></h4>
+            <ul id="non-list"></ul>
+        </div>
     </div>
 </div>
 {%endblock%}

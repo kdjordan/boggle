@@ -25,11 +25,29 @@ a {
     color: inherit;
 }
 
+#start-btn, #reset-btn, #go-btn {
+    background-color: var(--orange-web);
+    outline:none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    color: var(--oxford-blue);
+    padding: 2.rem .3rem;
+    cursor: pointer;
+    transition: all .4s ease;
+}
+
+#start-btn:hover, #reset-btn:hover {
+    filter: opacity(50%);
+}
+
+#start-btn:disabled, #reset-btn:disabled, #go-btn:disabled {
+    filter: opacity(50%);
+}
 
 
 body {
     font-family: 'Lato', sans-serif;
-    margin-top: -2rem;
+    margin: 1rem 0;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -74,19 +92,38 @@ td {
 .game-play-wrapper {
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    width: 60%;
 }
 
 #good-words h4 {
     color: var(--aero);
     text-decoration: underline;
 }
+
+#bad-words, #good-words {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    width: 100%;
+}
+
+#good-words-top h4 {
+    text-decoration: none;
+    font-size: 1.2rem;
+    white-space: no-wrap;
+}
+
+#bad-words-top {
+    height: 40%;
+}
+
 #bad-words h4 {
     color: var(--red);
     text-decoration: underline;
 }
 
-#bad-list {
+#bad-list, #non-list {
     color: var(--red);
     list-style-type: none;
     text-decoration: none;
