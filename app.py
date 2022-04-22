@@ -58,6 +58,7 @@ def submit():
 
 @app.route('/finalize')
 def finalize():
+    """A simple route that will update our session count and redirect to /board"""
     session['NUM_GAMES'] = session['NUM_GAMES'] + 1
     return redirect('/board')
 

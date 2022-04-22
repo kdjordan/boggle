@@ -1,6 +1,5 @@
 from app import app
 from flask import session
-from boggle import Boggle
 from unittest import TestCase
 
 app.config['TESTING'] = True
@@ -17,7 +16,7 @@ class FlaskTests(TestCase):
             res = client.get('/', follow_redirects=True)
             html = res.get_data(as_text=True)
             self.assertEqual(res.status_code, 200)
-            self.assertIn('<h1>BOGGLE !</h1>', html)
+            self.assertIn('BOGGLE !', html)
 
     def test_board_init(self):
         """Test to see if our index page initiates board into session"""
@@ -40,10 +39,19 @@ class FlaskTests(TestCase):
                 change_session['GOOD_WORDS'] = ['good']
                 change_session['NOT_WORD'] = ['nottaword']
                 change_session['NOT_ON_BOARD'] = ['supercalifragilicious']
+                change_session['NUM_GAMES'] = 9
             res = client.get('/board')
             self.assertEqual(session['GOOD_WORDS'], ['good'])
             self.assertEqual(session['NOT_WORD'], ['nottaword'])
             self.assertEqual(session['NOT_ON_BOARD'], ['supercalifragilicious'])
+            self.assertEqual(session['NUM_GAMES'], 9)
+
+    def test_finalize_redirect(self):
+        with app.test_client() as client:
+            with client.session_transaction() as change_session:
+                change_session['NUM_GAMES'] = 9
+            res = client.get('/finalize')
+            self.assertEqual(res.status_code, 302)
 
 
 
